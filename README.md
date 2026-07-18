@@ -1,116 +1,109 @@
-# Simple User API
+# Decode Lab 2 — Backend API
 
-A simple backend API built using **Node.js** and **Express.js**.
+A simple backend API built with **Node.js** and **Express** to handle basic application logic: creating and retrieving users.
 
-## Features
+## Project: Backend API Development
 
-- GET endpoint
-- POST endpoint
-- JSON request handling
-- Basic input validation
-- In-memory data storage
+**Goal:** Develop a simple backend API to handle application logic.
 
-## Installation
+**Key Requirements Covered:**
+- API endpoints (GET / POST)
+- Handling user input and responses
+- Basic data validation
 
-1. Install dependencies
+## Tech Stack
 
+- Node.js
+- Express
+
+## Project Structure
+
+```
+DECODE LAB2/
+├── node_modules/
+├── package.json
+├── package-lock.json
+├── server.js
+└── README.md
+```
+
+## Getting Started
+
+### 1. Install dependencies
 ```bash
 npm install
 ```
 
-2. Start the server
-
+### 2. Run the server
 ```bash
 node server.js
 ```
 
-The server will run on:
-
+The server will start on:
 ```
 http://localhost:3000
 ```
 
----
+You should see `app is running` logged in the console.
 
 ## API Endpoints
 
-### GET /
+### `GET /`
+Returns a welcome message to confirm the API is running.
 
-Returns a welcome message.
-
-Response:
-
-```text
-Welcome to my API
+**Response:**
+```
+welcome to my api
 ```
 
 ---
 
-### GET /users
+### `GET /users`
+Returns the full list of users currently stored in memory.
 
-Returns all users.
-
-Example:
-
+**Response `200 OK`:**
 ```json
 [
-  {
-    "name": "Jahnavi"
-  }
+  { "name": "John" },
+  { "name": "Sara" }
 ]
 ```
 
 ---
 
-### POST /user
+### `POST /user`
+Creates a new user. Requires a `name` field in the request body.
 
-Adds a new user.
-
-Request Body
-
+**Request Body:**
 ```json
 {
-  "name": "Jahnavi"
+  "name": "John"
 }
 ```
 
-Success Response
-
+**Success Response `201 Created`:**
 ```json
 {
-  "message": "User added successfully",
+  "message": "data received",
   "users": [
-    {
-      "name": "Jahnavi"
-    }
+    { "name": "John" }
   ]
 }
 ```
 
-Validation
-
-If the name is missing:
-
+**Validation Error Response `400 Bad Request`**  
+Returned when `name` is missing from the request body.
 ```json
 {
-  "message": "Name is required"
+  "message": "Name is Required"
 }
 ```
 
-Status Code:
+## Notes
 
-- 201 Created
-- 400 Bad Request
-
----
-
-## Technologies Used
-
-- Node.js
-- Express.js
-
----
+- Data is stored **in memory** (in a `users` array). This means all data resets whenever the server restarts — there is no database connected yet.
+- This project focuses on demonstrating core backend concepts: routing, request handling, JSON responses, and basic input validation.
 
 ## Author
 
-Jahnavi Pandey
+Built as part of the Decode Lab backend development task.
